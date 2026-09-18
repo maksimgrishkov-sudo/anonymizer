@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ширма — обезличивание файлов</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <h1>Ширма</h1>
+  <p class="lead">Прячет ключи, пароли и контакты в файлах, прежде чем вы
+     покажете их постороннему. Ничего никуда не уходит: всё считается
+     на этой машине.</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="hide">Скрыть</button>
+  <button class="tab" data-tab="restore">Вернуть обратно</button>
+  <button class="tab" data-tab="check">Проверить перед отправкой</button>
+</nav>
+
+<!-- ── скрыть ────────────────────────────────────────────────── -->
+<section id="hide" class="pane active">
+  <div class="drop" id="drop">
+    <strong>Перетащите файлы сюда</strong>
+    <span>или <label class="link">выберите<input type="file" id="files" multiple hidden></label></span>
+    <small>логи, код, конфиги, выгрузки — текстовые форматы</small>
+  </div>
+
+  <div class="result" id="hideResult" hidden>
+    <div class="cards" id="reportCards"></div>
+
+    <div class="warn" id="leftWarn" hidden></div>
+
+    <div class="files" id="fileList"></div>
+
+    <div class="actions">
+      <button class="btn" id="dlFiles">Скачать обезличенные файлы</button>
+      <button class="btn ghost" id="dlMap">Скачать словарь замен</button>
+    </div>
+    <p class="note">Словарь замен — единственное, что раскрывает скрытое.
+       Держите его у себя и не отправляйте вместе с файлами.</p>
+
+    <details class="preview">
+      <summary>Посмотреть, что получилось</summary>
+      <pre id="hidePreview"></pre>
+    </details>
+  </div>
+</section>
+
+<!-- ── вернуть ───────────────────────────────────────────────── -->
+<section id="restore" class="pane">
+  <p class="hint">Вставьте ответ, который вам прислали по обезличенному
+     файлу, и подложите словарь замен — метки превратятся обратно
+     в настоящие ключи и имена.</p>
+
+  <label class="filepick">Словарь замен (anon.map.json)
+    <input type="file" id="mapFile" accept=".json">
+  </label>
+  <span class="mapstate" id="mapState">словарь не загружен</span>
+
+  <textarea id="restoreIn" placeholder="Сюда — текст с метками вида KEY_1, MAIL_2…"></textarea>
+  <div class="actions">
+    <button class="btn" id="doRestore">Подставить настоящие значения</button>
+  </div>
+  <pre id="restoreOut" hidden></pre>
+</section>
+
+<!-- ── проверить ─────────────────────────────────────────────── -->
+<section id="check" class="pane">
+  <p class="hint">Последняя проверка перед отправкой: прогоняет готовый
+     текст по тем же правилам и показывает, что ещё похоже на секрет.
+     Лучше увидеть пропущенное самому.</p>
+  <textarea id="checkIn" placeholder="Вставьте текст, который собираетесь отправить"></textarea>
+  <div class="actions">
+    <button class="btn" id="doCheck">Проверить</button>
+  </div>
+  <div id="checkOut"></div>
+</section>
+
+<footer>
+  <span>Работает локально, без интернета</span>
+  <span class="dot">·</span>
+  <span>Свои слова — в файле <code>words.txt</code> рядом с программой</span>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

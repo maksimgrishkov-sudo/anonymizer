@@ -1,0 +1,8 @@
+2026-09-18 10:02:11 INFO  Запуск бота «Ромашка-доставка», версия 2.4
+2026-09-18 10:02:11 DEBUG token=8638152401:AAEW6jeSP9aLE6hDrfYFIyP_HWqCRZXY3nA
+2026-09-18 10:02:12 INFO  Подключение к базе на 185.204.3.77, пользователь C:\\Users\\shandrin
+2026-09-18 10:02:12 DEBUG api_key = "sk-live-4f8a0c2e9b1d7a3f6e5c"
+2026-09-18 10:03:40 INFO  Заявка от Петровой Анны, +7 912 445-31-08, a.petrova@romashka-dostavka.ru
+2026-09-18 10:03:41 INFO  Передано менеджеру ООО Ромашка, ИНН 7724390481
+2026-09-18 10:05:02 ERROR Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9zzz
+2026-09-18 10:05:02 ERROR Не отвечает romashka-dostavka.ru, повтор через 60 с

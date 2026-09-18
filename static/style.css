@@ -1,0 +1,152 @@
+/* Палитра та же, что на сайте и в кворках: фиолетовый с голубым на тёмном.
+   Человек, пришедший с любой площадки, должен видеть одного исполнителя. */
+:root {
+  --bg: #0b0f14;
+  --panel: rgba(255, 255, 255, .04);
+  --line: #2b3a4b;
+  --text: #e7edf5;
+  --muted: #a9b9cc;
+  --accent: #7c5cff;
+  --accent-soft: #b98cff;
+  --blue: #3ea6ff;
+  --ok: #3fb950;
+  --bad: #ff7b72;
+  --warn: #d29922;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background:
+    radial-gradient(900px 520px at 88% -10%, rgba(150, 62, 255, .30) 0%, transparent 60%),
+    radial-gradient(760px 480px at -8% 40%, rgba(96, 60, 230, .22) 0%, transparent 64%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  padding: 40px 20px 60px;
+}
+
+header { max-width: 820px; margin: 0 auto 28px; }
+
+h1 {
+  font-size: 40px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent) 45%, var(--blue) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.lead { color: var(--muted); font-size: 16px; line-height: 1.55; max-width: 60ch; }
+
+/* ── вкладки ──────────────────────────────────────────────────── */
+.tabs { max-width: 820px; margin: 0 auto 18px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+.tab {
+  background: var(--panel); border: 1px solid var(--line); color: var(--muted);
+  padding: 10px 16px; border-radius: 10px; cursor: pointer;
+  font-size: 15px; font-family: inherit; transition: .15s;
+}
+.tab:hover { color: var(--text); border-color: var(--accent); }
+.tab.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
+.pane { display: none; max-width: 820px; margin: 0 auto; }
+.pane.active { display: block; }
+
+/* ── зона перетаскивания ──────────────────────────────────────── */
+.drop {
+  border: 2px dashed var(--line); border-radius: 16px; padding: 54px 24px;
+  text-align: center; transition: .18s; cursor: pointer; background: var(--panel);
+}
+.drop:hover, .drop.over { border-color: var(--accent); background: rgba(124, 92, 255, .08); }
+.drop strong { display: block; font-size: 20px; margin-bottom: 8px; }
+.drop span { color: var(--muted); font-size: 15px; }
+.drop small { display: block; color: #6e7681; font-size: 13px; margin-top: 14px; }
+
+.link { color: var(--blue); cursor: pointer; text-decoration: underline; }
+
+/* ── отчёт ────────────────────────────────────────────────────── */
+.result { margin-top: 26px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+
+.card {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 12px; padding: 16px 18px;
+}
+.card b { display: block; font-size: 30px; font-weight: 800; color: var(--accent-soft); line-height: 1; }
+.card span { display: block; color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+.warn {
+  margin-top: 16px; padding: 14px 18px; border-radius: 12px;
+  border: 1px solid var(--warn); background: rgba(210, 153, 34, .1);
+  color: #f0d79a; font-size: 15px; line-height: 1.5;
+}
+.warn b { color: var(--warn); }
+
+.files { margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+.file {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; padding: 12px 16px; font-size: 15px;
+}
+.file .meta { color: var(--muted); font-size: 13px; white-space: nowrap; }
+
+.actions { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn {
+  background: var(--accent); color: #fff; border: 0; border-radius: 10px;
+  padding: 12px 20px; font-size: 15px; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: .15s;
+}
+.btn:hover { background: #6b4ae8; }
+.btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+.btn.ghost:hover { border-color: var(--accent); }
+
+.note { margin-top: 12px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.hint { color: var(--muted); font-size: 15px; line-height: 1.55; margin-bottom: 18px; max-width: 62ch; }
+
+textarea {
+  width: 100%; min-height: 220px; background: #0d1117; color: var(--text);
+  border: 1px solid var(--line); border-radius: 12px; padding: 16px;
+  font-family: Consolas, "SF Mono", monospace; font-size: 14px; line-height: 1.6;
+  resize: vertical;
+}
+textarea:focus { outline: none; border-color: var(--accent); }
+
+pre {
+  margin-top: 16px; background: #0d1117; border: 1px solid var(--line);
+  border-radius: 12px; padding: 16px; overflow-x: auto;
+  font-family: Consolas, monospace; font-size: 13px; line-height: 1.7;
+  white-space: pre-wrap; word-break: break-word; max-height: 420px; overflow-y: auto;
+}
+
+.preview { margin-top: 20px; }
+.preview summary { cursor: pointer; color: var(--blue); font-size: 15px; }
+
+.filepick { display: inline-block; color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+.filepick input { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; }
+.mapstate { display: block; font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+.mapstate.ok { color: var(--ok); }
+
+.found { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.found div {
+  background: rgba(255, 123, 114, .08); border: 1px solid rgba(255, 123, 114, .4);
+  border-radius: 10px; padding: 10px 14px; font-size: 14px;
+}
+.found code { color: var(--bad); font-family: Consolas, monospace; }
+.clean {
+  margin-top: 16px; padding: 14px 18px; border-radius: 12px;
+  border: 1px solid var(--ok); background: rgba(63, 185, 80, .1); color: #86e29b; font-size: 15px;
+}
+
+footer {
+  max-width: 820px; margin: 44px auto 0; padding-top: 20px;
+  border-top: 1px solid var(--line); color: #6e7681; font-size: 13px;
+}
+footer code { color: var(--muted); }
+.dot { margin: 0 8px; }
+
+@media (max-width: 560px) {
+  h1 { font-size: 30px; }
+  .drop { padding: 36px 16px; }
+}
