@@ -13,7 +13,7 @@ import json
 import re
 from pathlib import Path
 
-from .patterns import GROUPED, KEEP, PATTERNS, TITLES
+from .patterns import GROUPED, KEEP, PATTERNS, TITLES, VALIDATORS
 
 # Файлы, которые нет смысла разбирать: там нет текста, а время уйдёт.
 BINARY_SUFFIXES = {
@@ -94,6 +94,8 @@ class Anonymizer:
                 val = m.group(0)
                 if val in KEEP or val.lower() in KEEP:
                     return val
+                if kind in VALIDATORS and not VALIDATORS[kind](val):
+                    return val
                 return self._mark(kind, val)
             text = rx.sub(repl, text)
         return text
@@ -147,6 +149,8 @@ def check(text, own_words=None):
         for m in rx.finditer(text):
             val = m.group(2) if kind in GROUPED else m.group(0)
             if val in KEEP or val.lower() in KEEP or MARK.match(val):
+                continue
+            if kind in VALIDATORS and not VALIDATORS[kind](val):
                 continue
             found.append({"kind": kind, "title": TITLES.get(kind, kind),
                           "value": val[:80]})
